@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CNN visulization</title>
+  <link href="{{url_for('static', filename = 'result.css')}}" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all">
+    <div class="main">
+      <div class="allContent">
+        <div class="sidebar">
+          <div class="container2">
+            <div class="logo">
+              <img src={{url_for('static', filename = '/images/design/logo.png')}} alt="Cnn Visualization">
+            </div>
+          </div>
+        </div>
+        <div class="rightSide">
+          <div class="container">
+            <div id="head"><h1>Here are your visualization</h1>
+              <label  for="image_file" id="anotherImg">
+                Try another image
+              </label>
+              <input type="file" accept="image/*" name="image_file" id="image_file" class="inputfile" style="display: none;" />
+               <!--<p id="anotherImg">Try another image</p>--></div>
+            <h2>Your output is: {{data.output}}</h2>
+            <div id="descriprionModels">
+              {%for i in range(num_layers)%}
+              <h2>Layer name: {{data["name_layers"][i]["name"]}}</h2>
+              <div class="featurMapsNumber">
+                <h2>Feature Maps: </h2>
+              </div>
+              <div class="outputFeatures">
+                <input type="number" class="tentacles" name="tentacles" value="0" min="0" max="{{data['name_layers'][i]['num_feature_maps']}}"/>
+                <img src="" class="imageDisplay">
+              </div>
+              {%endfor%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const inputs = document.getElementsByClassName("tentacles");
+  const img = document.getElementsByClassName("imageDisplay");
+  var dataFromFlask = {{data | tojson | safe}}
+  for (let i = 0; i < inputs.length; i++) {
+    img[i].src = "data:image/png;base64,"+dataFromFlask["name_layers"][i]["feature_maps"][inputs[i].value]
+    inputs[i].addEventListener("input", function () {
+    const value = parseInt(inputs[i].value, 10);
+    const min = parseInt(inputs[i].min, 10);
+    const max = parseInt(inputs[i].max, 10);
+    if (value < min) {
+      numberInput.value = min;
+    } else if (value > max) {
+      numberInput.value = max;
+    }
+    img[i].src = "data:image/png;base64,"+dataFromFlask["name_layers"][i]["feature_maps"][inputs[i].value]
+  });
+  }
+  /*--------------------------------------------------------------------------------------------*/
+  function uploadModel() {
+    const modelFileInput = document.getElementById("image_file");
+    const imageFile = modelFileInput.files[0];
+
+    if (imageFile) {
+        const formData = new FormData();
+        formData.append("image2", imageFile);
+        formData.append("modelPath", dataFromFlask["modelPath"])
+
+        fetch("/Visualization2", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("descriprionModels").innerHTML = ""
+          console.log(data.num_layers)
+          for(i = 0; i < data.num_layers; i++){
+            console.log("heyyy")
+            document.getElementById("descriprionModels").innerHTML+=`
+            <h2>Layer name: ${data.data["name_layers"][i]["name"]}</h2>
+              <div class="featurMapsNumber">
+                <h2>Feature Maps: </h2>
+              </div>
+              <div class="outputFeatures">
+                <input type="number" class="tentacles" name="tentacles" value="0" min="0" max="${data.data['name_layers'][i]['num_feature_maps']}"/>
+                <img src="" class="imageDisplay">
+              </div>
+            `;
+          }
+          const inputs = document.getElementsByClassName("tentacles");
+          const img = document.getElementsByClassName("imageDisplay");
+          console.log(inputs.length)
+          var dataFromFlask = data.data
+          for (let i = 0; i < inputs.length; i++) {
+            img[i].src = "data:image/png;base64,"+dataFromFlask["name_layers"][i]["feature_maps"][inputs[i].value]
+            inputs[i].addEventListener("input", function () {
+              const value = parseInt(inputs[i].value, 10);
+              const min = parseInt(inputs[i].min, 10);
+              const max = parseInt(inputs[i].max, 10);
+              if (value < min) {
+                numberInput.value = min;
+              } else if (value > max) {
+                numberInput.value = max;
+              }
+            img[i].src = "data:image/png;base64,"+dataFromFlask["name_layers"][i]["feature_maps"][inputs[i].value]
+          });
+        }
+      });
+    }
+  }
+  document.getElementById("image_file").addEventListener("change", function () {
+      uploadModel();
+  });
+
+</script>
+</html>

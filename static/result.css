@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #E8E8E8;
+}
+
+.all {
+    position: relative;
+    height: 100vh;
+    transition: .2s all ease;
+}
+
+
+.main {
+    width: 1060px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px 0;
+    max-height: 600px;
+}
+
+.allContent {
+    display: flex;
+    gap: 0 40px;
+}
+
+.sidebar {
+    height: auto;
+    background: #FFFFFF;
+    border-right: 1px solid #E8E8E8;
+    box-shadow: 0px 20px 50px rgb(146 147 151 / 50%);
+    border-radius: 51px;
+    padding: 30px 10px;
+    flex-basis: 230px;
+    max-width: 341px;
+    max-height: 150px;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: 0.01em;
+    color: #000000;
+    margin: 0 0 15px 0;
+}
+
+/* arrows */
+.rightSide {
+    width: -webkit-fill-available;
+    background: white;
+    padding: 40px;
+    border-radius: 50px;
+    box-shadow: 0px 20px 50px rgb(146 147 151 / 50%);
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+}
+
+.rightSide p {
+    font-size: 14px;
+    text-align: justify;
+}
+
+#descriprionModels {
+    margin: 30px 0 20px;
+}
+
+#descriprionModels h2 {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+}
+
+.modelDescription {
+    background: #B6A5F6;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 0 15px 0;
+}
+
+.modelDescription span {
+    color: white;
+    font-size: 15px;
+}
+
+.last {
+    margin: 0 0 30px 0;
+}
+
+/* ------------------ */
+#head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-items: flex-start;
+
+}
+
+#anotherImg{
+    background: #FFBF7D;
+    padding: 10px;
+    text-align: center;
+    color:black;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.featurMapsNumber {
+    display: flex;
+    align-items: baseline;
+}
+.outputFeatures{
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+.imageDisplay{
+    margin: 20px 0;
+    height: 300px;
+}
+.tentacles {
+    width: 200px;
+    height: 40px;
+    font-size: 20px; 
+}
+.tentacles::-webkit-inner-spin-button,
+.tentacles::-webkit-outer-spin-button {
+  height: 40px; 
+  background-color: purple; 
+  color: white; 
+}
