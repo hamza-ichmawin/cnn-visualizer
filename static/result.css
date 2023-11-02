@@ -9,6 +9,14 @@
     text-decoration: none;
     list-style: none;
 }
+#logo-container {
+    display: none;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+}
 
 body {
     font-family: 'Poppins', sans-serif;

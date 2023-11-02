@@ -39,6 +39,29 @@ body{
     gap: 0 40px;
     
 }
+
+#logo {
+    display: none;
+}
+@keyframes growAndShrink {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+.logo.centered {
+    position: absolute;
+    top: 42%;
+    left: 42%;
+    transform: translate(-50%, -50%);
+    animation: growAndShrink 2s infinite; /* Adjust the duration as needed */
+  }
 .sidebar{
     height: auto;
     background: #FFFFFF;

@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CNN visulization</title>
   <link href="{{url_for('static', filename = 'result.css')}}" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="{{url_for('static', filename = 'favicon.ico')}}">
+
 </head>
 
 <body>
@@ -45,7 +47,9 @@
       </div>
     </div>
   </div>
-</body>
+
+
+
 <script>
   const inputs = document.getElementsByClassName("tentacles");
   const img = document.getElementsByClassName("imageDisplay");
@@ -121,4 +125,6 @@
   });
 
 </script>
+</body>
+
 </html>

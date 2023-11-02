@@ -39,7 +39,7 @@ def upload():
         if not os.path.exists(folder_model_user):
             os.mkdir(folder_model_user)
             shutil.copy(model_filename, os.path.join(folder_model_user,model_file.filename))
-        return f"File '{model_file.filename}' uploaded and saved successfully to 'models' directory."
+        return f"'{model_file.filename}' uploaded successfully"
 
     return "No file uploaded"
 

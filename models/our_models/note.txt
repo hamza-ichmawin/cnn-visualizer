@@ -1,0 +1,1 @@
+here should be two models with .h5 extensions with names "inception_dogs_cats" and "vgg16_RPS"
